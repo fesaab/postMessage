@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>Test</title>
+	</head>
+	<body>
+		<span>Eu sou o iframe!</span>
+
+		<script type="text/javascript">
+			
+		window.addEventListener("message", receiveMessage, false);
+		console.log('Listener adicionado na página filha!');
+
+		function receiveMessage(event)
+		{
+		  //var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+		  //if (origin !== "http://example.org:8080")
+		  //  return;
+
+		  console.log('Mensagem recebida na página filha!');
+		  console.debug(event);
+
+		  console.log('Enviando um ACK para a página mãe...');
+		  event.source.postMessage("ACK!", '*');
+		}
+
+		</script>
+	</body>
+</html>
